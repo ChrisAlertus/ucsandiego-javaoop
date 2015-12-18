@@ -1,0 +1,102 @@
+// Java Course
+
+class: type of data - we define and then have a template
+object: piece/ instance of class
+
+Note: for publc Java classes must name file the same as the class name
+
+SimpleLocation.java
+
+public class SimpleLocation
+{
+	...
+	// note explicit visibility specification for all members
+	public double latitude;
+	public double longitude;
+	...
+	// Ctor: because no return type and the name is the class name
+	public SimpleLocation(double lat, double lon)
+	{
+		this.latitude= lat;
+		this.longitude= lon;
+	}
+
+	public double distance(SimpleLocation other)
+	{
+		...
+	}
+}
+
+Creating and using objects:
+- Everything in Java must be a class
+- instantiate an object via :
+	new ClassName(arg1,arg2) : to call two param ctor
+- access members via: ClassName.membername
+
+Overloading Methods:
+- no default ctors
+- can define no param ctor i.e default ctor
+
+public SimpleLocation()
+{
+	this.latitude= 32.9;
+	this.longitude= -117.2;
+}
+
+// the two param ctor already defined but this is overlaoded - same fn name but diff # and types of params
+Note: can overload methods, constructors, etc
+
+Note: see JavaDocumentation to see what overloaded methods are available for use when building on top of libraries.
+NOTE: can't overload method return type (only) - since compiler looks at parameter list to see what you are trying to call
+	else it will complain. 
+
+Method signature: name and parameter list (number, type and order of params)
+	- can overload once param type is different (since return type isn't part of signature)
+
+Member Scope
+
+- private: can only access elements from code defined within the class itself 
+	- rule fo thumb: make all member variables private
+	- for private members write getters and setters (maybe)
+
+// getter
+public double getLatitude()
+{
+	return this.latitude;
+}
+// setter
+// used to enforce member invariants but still give user access
+public void setLatitude(double lat)
+{
+	if(lat < -180 || lat > 180){
+		System.out.println("Illegal value for latitude.");
+	}
+	else{
+		this.latitude= lat;
+	}
+}
+
+NOTE: trying to access a private member incorrectly will throw a Compile Error (caught before runtime)
+
+Memory Models
+
+Java primitives: int, double, float, short, long , char, boolean, byte
+
+Object types: arrays and classes
+
+new: creates object in the heap
+	- the variable name that the heap object is assigned to contains a reference(pointer) to the heap object
+
+Variable Scope: area of code where a variable is defined to have a particular value
+- local variable: declared inside a method / block / loop, only used inside
+-  parameter: behave like local variables but defined in method header
+- member variables: defined outside any method
+
+- note: no need to explicitly use this but if not used then variable name could clash with other local variables with same 
+		name as the member. This makes it safer
+
+- note: after ctor runs, it returns a pointer to "this" which is then assigned to variables (this is how "new ctor" works)
+
+- NOTE: since arrays are treated like objects ( pointers to their elements) , if you have a member which is an array and you reassign to the array, the member
+		value changes. See ArrayLocation example in Eclipse. Arrays delcared in heap - since not primitive type
+

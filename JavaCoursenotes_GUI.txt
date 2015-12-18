@@ -1,0 +1,9 @@
+GUI libraries: Swing, AWT, JavaFX, PRocessing
+- in this course use processing
+
+In Processing make Papplets: https://processing.org/reference/
+- use their documentation fro methods and attributes associated with objects
+- they call setup() once and loop the draw method indefinitely over its life
+- API : tell us what methods are in library and what you can use them to do
+- in computer graphics positive y increases as you go down from top
+
